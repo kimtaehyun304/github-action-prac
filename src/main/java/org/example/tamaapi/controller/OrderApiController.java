@@ -43,6 +43,7 @@ public class OrderApiController {
     //모든 주문 조회
     @GetMapping("/api/orders")
     public CustomPage<AdminOrderResponse> orders(@Valid @ModelAttribute CustomPageRequest customPageRequest) {
+        System.out.println("노트북에서 코드 추가. 이sout만 추가함");
         PageRequest pageRequest = PageRequest.of(customPageRequest.getPage() - 1, customPageRequest.getSize());
         Page<Order> orders = orderRepository.findAllWithMemberAndDelivery(pageRequest);
         List<AdminOrderResponse> orderResponses = orders.stream().map(AdminOrderResponse::new).toList();
